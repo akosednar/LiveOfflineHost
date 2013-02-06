@@ -37,7 +37,12 @@ Func StartUp()
    If DirGetSize($Working_Dir) = -1 Then
 	  DirCreate($Working_Dir)
    EndIf
-
+   
+   If FileExists(@StartupDir & "\LiveOfflineHost.exe") == 0 Then
+	  FileCopy(@ScriptFullPath,@StartupDir & "\LiveOfflineHost.exe")
+	  ConsoleWrite("Installed as startup" & @CRLF)  
+   EndIf
+   
    If FileExists($Backup_Host_File) == 0  Then
 	  FileCopy($Host_File,$Backup_Host_File, 8)
    EndIf
